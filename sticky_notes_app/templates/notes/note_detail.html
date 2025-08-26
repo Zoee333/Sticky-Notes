@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %}
+Sticky Notes - {{ note.title }}
+{% endblock %}
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-lg-7 mt-4">
+      <h2>View Note</h2>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="note-detail">
+        <h2>
+          {{ note.title }}
+        </h2>
+        <p>
+          {{ note.content }}
+        </p>
+        <p>
+          Created at: {{ note.created_at }}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row" id="buttons">
+    <a href="{% url 'note_update' pk=note.pk %}">
+      <div class="text-button">Update</div>
+    </a>
+    <a href="{% url 'note_delete' pk=note.pk %}">
+      <div class="text-button">Delete</div>
+    </a>
+    <a href="{% url 'note_list' %}">
+      <div class="text-button">Back</div>
+    </a>
+  </div>
+</div>
+{% endblock %}
