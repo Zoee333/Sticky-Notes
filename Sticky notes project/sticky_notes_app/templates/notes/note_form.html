@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% block title %}
+Sticky Notes -
+{% if form.instance.pk %}
+Edit
+{% else %}
+Create
+{% endif %}
+Note
+{% endblock %}
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-lg-7 mt-4">
+      <h2>
+        {% if form.instance.pk %}
+        Edit
+        {% else %}
+        Create
+        {% endif %}
+        Note
+      </h2>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div class="note-detail">
+        <form method="post" action="{% if form.instance.pk %}
+                  {% url 'note_update' pk=form.instance.pk %}
+                {% else %}
+                  {% url 'note_create' %}
+                {% endif %}">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <button type="submit" class="text-button">
+            Save
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container">
+  <div class="row" id="buttons">
+    <a href="{% url 'note_list' %}">
+      <div class="text-button">Back</div>
+    </a>
+  </div>
+</div>
+{% endblock %}
